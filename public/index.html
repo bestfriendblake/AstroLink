@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AstroLink | Journey to the Stars</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/space2/style.css" />
+</head>
+<body>
+
+  <div class="stars-container">
+    <div class="star s1"></div>
+    <div class="star s2"></div>
+    <div class="star s3"></div>
+    <div class="star s4"></div>
+    <div class="star s5"></div>
+    <div class="shooting-star"></div>
+  </div>
+
+  <div class="card">
+    <div class="logo-area">
+      <p class="logo-title">AstroLink</p>
+      <p class="logo-sub">✦ collect · explore · evolve ✦</p>
+    </div>
+
+    <div class="tab-row">
+      <button class="tab-btn active" id="tab-login">Sign In</button>
+      <button class="tab-btn" id="tab-register">Register</button>
+    </div>
+
+    <div id="msg" class="msg"></div>
+
+    <div class="field">
+      <label>Username</label>
+      <input type="text" id="username" placeholder="StarTrainer42" />
+    </div>
+
+    <div class="register-fields" id="reg-fields">
+      <div class="field">
+        <label>Email</label>
+        <input type="email" id="email" placeholder="you@example.com" />
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Password</label>
+      <input type="password" id="password" placeholder="••••••••" />
+    </div>
+
+    <button class="submit-btn" id="submit-btn">Begin Journey ✦</button>
+
+    <div class="divider">— or —</div>
+    <p class="alt-text" id="alt-text">New here? <span>Create an account</span></p>
+  </div>
+
+  <script src="js/landing.js"></script>
+</body>
+</html>

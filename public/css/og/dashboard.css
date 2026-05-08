@@ -1,0 +1,268 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  background: #f0f4ff;
+  font-family: 'Nunito', sans-serif;
+  padding-bottom: 2rem;
+}
+
+.topbar {
+  background: rgba(255,255,255,0.95);
+  border-bottom: 2px solid rgba(244,193,224,0.4);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.topbar-logo {
+  font-family: 'Fredoka One', cursive;
+  font-size: 22px;
+  background: linear-gradient(135deg, #e879f9, #818cf8, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.currency-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #fdf4ff;
+  border: 1.5px solid #e9d5ff;
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #7c3aed;
+}
+
+.star-icon {
+  width: 14px;
+  height: 14px;
+  background: #fcd34d;
+  transform: rotate(45deg);
+  border-radius: 2px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.avatar-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e879f9, #818cf8);
+  border: none;
+  cursor: pointer;
+  font-family: 'Fredoka One', cursive;
+  font-size: 14px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.profile-banner {
+  background: rgba(255,255,255,0.7);
+  margin: 16px;
+  border-radius: 20px;
+  border: 1.5px solid rgba(244,193,224,0.5);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.profile-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e879f9, #818cf8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fredoka One', cursive;
+  font-size: 22px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.profile-info { flex: 1; min-width: 0; }
+
+.profile-name {
+  font-family: 'Fredoka One', cursive;
+  font-size: 18px;
+  color: #4c1d95;
+  margin-bottom: 2px;
+}
+
+.profile-level {
+  font-size: 12px;
+  font-weight: 700;
+  color: #a78bca;
+  margin-bottom: 6px;
+}
+
+.xp-bar-bg {
+  height: 8px;
+  background: #ede9fe;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.xp-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #c084fc, #818cf8);
+  border-radius: 10px;
+  transition: width 0.6s ease;
+}
+
+.section-label {
+  font-family: 'Fredoka One', cursive;
+  font-size: 15px;
+  color: #7c3aed;
+  padding: 0 16px;
+  margin: 16px 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1.5px;
+  background: rgba(196,181,253,0.4);
+  border-radius: 2px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0 16px;
+}
+
+.nav-card {
+  background: white;
+  border-radius: 20px;
+  border: 1.5px solid rgba(244,193,224,0.4);
+  padding: 18px 14px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s;
+  text-align: center;
+}
+
+.nav-card:hover  { border-color: #c4b5fd; }
+.nav-card:active { transform: scale(0.97); }
+
+.card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.icon-pink   { background: #fce7f3; }
+.icon-purple { background: #ede9fe; }
+.icon-blue   { background: #dbeafe; }
+.icon-mint   { background: #d1fae5; }
+.icon-amber  { background: #fef3c7; }
+.icon-coral  { background: #fee2e2; }
+
+.card-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 15px;
+  color: #4c1d95;
+  line-height: 1.2;
+}
+
+.card-sub {
+  font-size: 11px;
+  font-weight: 700;
+  color: #a78bca;
+  margin-top: -4px;
+}
+
+.pet-preview {
+  background: white;
+  border-radius: 20px;
+  border: 1.5px solid rgba(244,193,224,0.4);
+  margin: 0 16px;
+  padding: 14px;
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+}
+
+.pet-chip {
+  flex-shrink: 0;
+  background: #faf5ff;
+  border: 1.5px solid #e9d5ff;
+  border-radius: 16px;
+  padding: 10px 14px;
+  text-align: center;
+  min-width: 80px;
+}
+
+.pet-chip-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  margin: 0 auto 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.pet-chip-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: #6d28d9;
+  white-space: nowrap;
+}
+
+.pet-chip-lvl {
+  font-size: 10px;
+  color: #a78bca;
+  font-weight: 600;
+}
+
+.rarity-common   { background: #f3f4f6; }
+.rarity-uncommon { background: #d1fae5; }
+.rarity-rare     { background: #dbeafe; }
+.rarity-epic     { background: #ede9fe; }
+.rarity-legendary { background: #fef3c7; }
+
+.loading-chip {
+  font-size: 12px;
+  color: #a78bca;
+  font-weight: 700;
+  padding: 20px;
+}
+
+.empty-pets {
+  font-size: 13px;
+  color: #a78bca;
+  font-weight: 700;
+  padding: 16px;
+  text-align: center;
+  width: 100%;
+}

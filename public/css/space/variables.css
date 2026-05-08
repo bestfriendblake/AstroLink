@@ -1,0 +1,19 @@
+:root {
+  /* The Void */
+  --bg-space: #0f0c29;
+  --nebula-purple: #302b63;
+  --nebula-pink: #24243e;
+
+  /* Glassmorphism */
+  --glass-white: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  
+  /* Text & Accents */
+  --text-primary: #f3e8ff; /* Pastel Purple-White */
+  --text-secondary: #c4b5fd; /* Soft Lavender */
+  --accent-cyan: #22d3ee;
+  --accent-pink: #f472b6;
+  
+  /* Submit Button */
+  --btn-grad: linear-gradient(45deg, #a855f7, #ec4899, #22d3ee);
+}

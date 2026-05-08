@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AstroLink | Deep Space</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&family=Fredoka+One&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/space/variables.css" />
+  <link rel="stylesheet" href="css/space/style.css" />
+</head>
+<body>
+
+  <!-- Space Background Elements -->
+  <div class="mega-moon"></div>
+  <div class="lone-astronaut">👨‍🚀</div>
+
+  <div class="card">
+    <div class="logo-area">
+      <p class="logo-title">AstroLink</p>
+      <p class="logo-sub">✦ Terminal Protocol ✦</p>
+    </div>
+
+    <div class="tab-row" style="display: flex; gap: 10px; margin-bottom: 20px;">
+        <button id="tab-login" class="tab-btn active" style="flex:1; background: none; border: none; color: white; cursor: pointer;">Uplink</button>
+        <button id="tab-register" class="tab-btn" style="flex:1; background: none; border: none; color: #aaa; cursor: pointer;">Sync</button>
+    </div>
+
+    <div class="field">
+      <label>Pilot ID</label>
+      <input type="text" id="username" placeholder="StarTrainer42">
+    </div>
+
+    <div class="field">
+      <label>Encryption Key</label>
+      <input type="password" id="password" placeholder="••••••••">
+    </div>
+
+    <button class="submit-btn" id="submit-btn">
+      Initiate Launch ✦
+    </button>
+
+    <p class="alt-text">First expedition? <span>Create Signal</span></p>
+  </div>
+
+  <script src="js/landing.js"></script>
+</body>
+</html>

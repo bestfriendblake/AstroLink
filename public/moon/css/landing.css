@@ -1,0 +1,311 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  background: #0a0a1a;
+  font-family: 'Nunito', sans-serif;
+  padding-bottom: 3rem;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.stars {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 40%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 40% 10%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 60%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 25%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 70%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 45%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 15% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 85%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 35% 65%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 15%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 48% 35%, rgba(255,255,255,0.3) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.topbar {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(10,10,26,0.8);
+  border-bottom: 1px solid rgba(196,181,253,0.2);
+}
+
+.back-btn {
+  font-size: 13px;
+  font-weight: 700;
+  color: #c4b5fd;
+  text-decoration: none;
+}
+
+.back-btn:hover { color: #e879f9; }
+
+.topbar-logo {
+  font-family: 'Fredoka One', cursive;
+  font-size: 18px;
+  color: #e2e8f0;
+}
+
+.currency-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(253,244,255,0.1);
+  border: 1.5px solid rgba(233,213,255,0.3);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #c4b5fd;
+}
+
+.star-icon {
+  width: 12px;
+  height: 12px;
+  background: #fcd34d;
+  transform: rotate(45deg);
+  border-radius: 2px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.hero {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5rem 1rem 1.5rem;
+  text-align: center;
+  gap: 1.2rem;
+}
+
+.moon-orb {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #f8f4e8, #c8bfa0, #8a7d5a);
+  border: 2px solid rgba(255,255,255,0.15);
+  box-shadow: 0 0 40px rgba(200,191,160,0.2);
+  position: relative;
+}
+
+.moon-orb::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.15);
+  top: 28px;
+  left: 20px;
+}
+
+.moon-orb::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.1);
+  top: 55px;
+  left: 55px;
+}
+
+.hero-text h1 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 28px;
+  color: #f0e6ff;
+  margin-bottom: 8px;
+}
+
+.hero-text p {
+  font-size: 14px;
+  color: #94a3b8;
+  line-height: 1.6;
+  max-width: 280px;
+}
+
+.stats-row {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding: 0 16px;
+  margin-bottom: 4px;
+}
+
+.stat-chip {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(196,181,253,0.2);
+  border-radius: 16px;
+  padding: 14px 8px;
+  text-align: center;
+}
+
+.stat-val {
+  font-family: 'Fredoka One', cursive;
+  font-size: 22px;
+  color: #e879f9;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 0.04em;
+}
+
+.section-label {
+  position: relative;
+  z-index: 1;
+  font-family: 'Fredoka One', cursive;
+  font-size: 15px;
+  color: #c4b5fd;
+  padding: 0 16px;
+  margin: 20px 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(196,181,253,0.2);
+}
+
+.game-card {
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,0.05);
+  border: 1.5px solid rgba(232,121,249,0.3);
+  border-radius: 20px;
+  margin: 0 16px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.game-card:hover {
+  border-color: #e879f9;
+  background: rgba(232,121,249,0.08);
+}
+
+.game-icon {
+  font-size: 36px;
+  flex-shrink: 0;
+}
+
+.game-info { flex: 1; }
+
+.game-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 18px;
+  color: #f0e6ff;
+  margin-bottom: 4px;
+}
+
+.game-desc {
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.game-arrow {
+  font-size: 18px;
+  color: #e879f9;
+  flex-shrink: 0;
+}
+
+.spawn-pool {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding: 0 16px;
+}
+
+.pet-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(196,181,253,0.15);
+  border-radius: 16px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pet-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.rarity-common    { background: rgba(243,244,246,0.1); }
+.rarity-uncommon  { background: rgba(209,250,229,0.1); }
+.rarity-rare      { background: rgba(219,234,254,0.15); }
+.rarity-epic      { background: rgba(237,233,254,0.15); }
+.rarity-legendary { background: rgba(254,243,199,0.15); }
+
+.pet-info {}
+.pet-name {
+  font-family: 'Fredoka One', cursive;
+  font-size: 14px;
+  color: #e2e8f0;
+  margin-bottom: 3px;
+}
+
+.pet-rarity {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.rarity-label-common    { color: #94a3b8; }
+.rarity-label-uncommon  { color: #6ee7b7; }
+.rarity-label-rare      { color: #93c5fd; }
+.rarity-label-epic      { color: #c4b5fd; }
+.rarity-label-legendary { color: #fcd34d; }
+
+.hidden-hint {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #475569;
+  margin-top: 14px;
+  padding: 0 16px;
+}
+
+.loading-msg {
+  color: #475569;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 20px;
+  grid-column: span 2;
+  text-align: center;
+}

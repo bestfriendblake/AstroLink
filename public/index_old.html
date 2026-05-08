@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AstroLink</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet" />
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="css/og/style_old.css" />
+</head>
+<body>
+
+  <!-- Clouds -->
+  <div class="cloud c1"></div>
+  <div class="cloud c2"></div>
+  <div class="cloud c3"></div>
+  <div class="cloud c4"></div>
+  <div class="cloud c5"></div>
+
+  <!-- Stars -->
+  <div class="star-4 s1"></div>
+  <div class="star-4 s2"></div>
+  <div class="star-4 s3"></div>
+  <div class="star-4 s4"></div>
+  <div class="star-4 s5"></div>
+  <div class="star-4 s6"></div>
+  <div class="star-4 s7"></div>
+  <div class="star-4 s8"></div>
+
+  <!-- Card -->
+  <div class="card">
+    <div class="gem-row">
+      <div class="gem gem-1"></div>
+      <div class="gem gem-2"></div>
+      <div class="gem gem-3"></div>
+      <div class="gem gem-4"></div>
+      <div class="gem gem-5"></div>
+    </div>
+
+    <div class="logo-area">
+      <p class="logo-title">AstroLink</p>
+      <p class="logo-sub">✦ collect · explore · evolve ✦</p>
+    </div>
+
+    <div class="tab-row">
+      <!-- Removed onclick handlers -->
+      <button class="tab-btn active" id="tab-login">Sign In</button>
+      <button class="tab-btn" id="tab-register">Register</button>
+    </div>
+
+    <div id="msg" class="msg"></div>
+
+    <div class="field">
+      <label>Username</label>
+      <input type="text" id="username" placeholder="StarTrainer42" autocomplete="username" />
+    </div>
+
+    <div class="register-fields" id="reg-fields">
+      <div class="field">
+        <label>Email</label>
+        <input type="email" id="email" placeholder="you@example.com" autocomplete="email" />
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Password</label>
+      <input type="password" id="password" placeholder="••••••••" autocomplete="current-password" />
+    </div>
+
+    <!-- Removed onclick handler -->
+    <button class="submit-btn" id="submit-btn">
+      Begin Journey ✦
+    </button>
+
+    <div class="divider">— or —</div>
+    <p class="alt-text" id="alt-text">
+      New here? <span>Create an account</span>
+    </p>
+  </div>
+
+  <!-- Link to external JS -->
+  <script src="js/landing.js"></script>
+</body>
+</html>

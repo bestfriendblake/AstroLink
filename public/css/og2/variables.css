@@ -1,0 +1,38 @@
+/* css/variables.css */
+:root {
+  /* Text Tiers */
+  --text-dark-1: #4c1d95; /* Primary Header/Input Text */
+  --text-dark-2: #7c3aed; /* Active Tabs/Links */
+  --text-dark-3: #a78bca; /* Sub-labels/Muted Text */
+  
+  /* Brand Gradients */
+  --brand-grad-1: #e879f9;
+  --brand-grad-2: #818cf8;
+  --brand-grad-3: #38bdf8;
+
+  /* Backgrounds & Containers */
+  --bg-main: #f0f4ff;
+  --bg-card: rgba(255, 255, 255, 0.92);
+  --bg-input: #faf5ff;
+  --bg-tab-row: #f3e8ff;
+  
+  /* Borders & Accents */
+  --border-light: #e9d5ff;
+  --border-card: rgba(244, 193, 224, 0.5);
+  --border-focus: #c084fc;
+
+  /* Feedback */
+  --color-error-bg: #fce7f3;
+  --color-error-text: #be185d;
+  --color-success-bg: #d1fae5;
+  --color-success-text: #065f46;
+
+  /* Elements (Stars/Gems) */
+  --color-pink: #f9a8d4;
+  --color-purple: #c4b5fd;
+  --color-blue: #93c5fd;
+  --color-green: #86efac;
+  --color-rose: #fda4af;
+  --color-yellow: #fcd34d;
+  --color-cyan: #a5f3fc;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AstroLink — The Moon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka+One&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/landing.css" />
+</head>
+<body>
+  <div class="stars"></div>
+
+  <div class="topbar">
+    <a href="/dashboard.html" class="back-btn">← Dashboard</a>
+    <span class="topbar-logo">🌙 The Moon</span>
+    <div class="currency-pill">
+      <div class="star-icon"></div>
+      <span id="stardust-balance">0</span>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="moon-orb"></div>
+    <div class="hero-text">
+      <h1>Lunar Gateway</h1>
+      <p>A pale world of tides and shadows. Rare creatures drift between moonbeams here.</p>
+    </div>
+  </div>
+
+  <div class="stats-row" id="stats-row">
+    <div class="stat-chip">
+      <div class="stat-val" id="stat-level">1</div>
+      <div class="stat-label">Lunar Level</div>
+    </div>
+    <div class="stat-chip">
+      <div class="stat-val" id="stat-landings">0</div>
+      <div class="stat-label">Landings</div>
+    </div>
+    <div class="stat-chip">
+      <div class="stat-val" id="stat-best">0</div>
+      <div class="stat-label">Best Score</div>
+    </div>
+  </div>
+
+  <div class="section-label">Mini-Game</div>
+  <div class="game-card" onclick="window.location.href='gravityflip.html'">
+    <div class="game-icon">🚀</div>
+    <div class="game-info">
+      <div class="game-title">Gravity Flip</div>
+      <div class="game-desc">Hold to float up, release to fall. Dodge lunar debris and rescue the pet at the top.</div>
+    </div>
+    <div class="game-arrow">▶</div>
+  </div>
+
+  <div class="section-label">Pet Spawn Pool</div>
+  <div class="spawn-pool" id="spawn-pool">
+    <div class="loading-msg">Loading creatures...</div>
+  </div>
+
+  <div class="hidden-hint" id="hidden-hint" style="display:none;">
+    <span>✦</span> <span id="hidden-count">?</span> more creatures unlock at higher levels
+  </div>
+
+  <script src="js/landing.js"></script>
+</body>
+</html>

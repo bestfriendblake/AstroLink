@@ -266,3 +266,258 @@ body {
   text-align: center;
   width: 100%;
 }
+
+.moonstone-pill {
+  background: rgba(15,15,40,0.8);
+  border-color: rgba(196,181,253,0.4);
+  color: #c4b5fd;
+}
+
+.moon-icon {
+  font-size: 13px;
+  line-height: 1;
+}
+
+.dailies-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 16px;
+}
+
+.daily-card {
+  background: white;
+  border-radius: 18px;
+  border: 1.5px solid rgba(244,193,224,0.4);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.daily-card-icon { font-size: 28px; flex-shrink: 0; }
+
+.daily-card-info { flex: 1; min-width: 0; }
+
+.daily-card-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 15px;
+  color: #4c1d95;
+}
+
+.daily-card-sub {
+  font-size: 12px;
+  font-weight: 700;
+  color: #a78bca;
+  margin-top: 2px;
+}
+
+.daily-action-btn {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #e879f9, #818cf8);
+  color: white;
+  font-family: 'Fredoka One', cursive;
+  font-size: 14px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.daily-action-btn:disabled {
+  background: #e9d5ff;
+  color: #a78bca;
+  cursor: default;
+}
+
+.daily-action-btn:not(:disabled):hover { opacity: 0.88; }
+
+.quests-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 16px;
+}
+
+.quest-card {
+  background: white;
+  border-radius: 16px;
+  border: 1.5px solid rgba(244,193,224,0.35);
+  padding: 13px 14px;
+}
+
+.quest-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.quest-name {
+  font-family: 'Fredoka One', cursive;
+  font-size: 14px;
+  color: #4c1d95;
+}
+
+.quest-reward {
+  font-size: 12px;
+  font-weight: 700;
+  color: #a78bca;
+}
+
+.quest-reward .moon { color: #7c3aed; }
+
+.quest-progress-bg {
+  height: 7px;
+  background: #ede9fe;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.quest-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #c084fc, #818cf8);
+  border-radius: 10px;
+  transition: width 0.4s ease;
+}
+
+.quest-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.quest-progress-text {
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+}
+
+.quest-claim-btn {
+  padding: 5px 14px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #e879f9, #818cf8);
+  color: white;
+  font-family: 'Fredoka One', cursive;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.quest-claim-btn:disabled {
+  background: #e9d5ff;
+  color: #a78bca;
+  cursor: default;
+}
+
+.quest-done {
+  font-size: 11px;
+  font-weight: 700;
+  color: #6ee7b7;
+}
+
+/* Slot Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-card {
+  background: white;
+  border-radius: 24px;
+  padding: 2rem 1.8rem 1.5rem;
+  text-align: center;
+  max-width: 320px;
+  width: 90%;
+  border: 2px solid rgba(244,193,224,0.5);
+}
+
+.modal-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 22px;
+  color: #4c1d95;
+  margin-bottom: 1.2rem;
+}
+
+.slot-machine {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.reel {
+  width: 72px;
+  height: 72px;
+  background: #faf5ff;
+  border: 2px solid #e9d5ff;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  transition: transform 0.1s;
+}
+
+.reel.spinning {
+  animation: reelSpin 0.1s linear infinite;
+}
+
+@keyframes reelSpin {
+  0%   { transform: translateY(-4px); }
+  50%  { transform: translateY(4px); }
+  100% { transform: translateY(-4px); }
+}
+
+.slot-result {
+  font-family: 'Fredoka One', cursive;
+  font-size: 16px;
+  color: #7c3aed;
+  min-height: 28px;
+  margin-bottom: 0.8rem;
+}
+
+.play-btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #e879f9, #818cf8);
+  color: white;
+  font-family: 'Fredoka One', cursive;
+  font-size: 17px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.play-btn:disabled {
+  background: #e9d5ff;
+  color: #a78bca;
+  cursor: default;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  color: #a78bca;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.loading-msg {
+  font-size: 13px;
+  color: #a78bca;
+  font-weight: 700;
+  padding: 20px;
+  text-align: center;
+}

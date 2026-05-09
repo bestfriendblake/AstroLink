@@ -15,12 +15,12 @@ const WING_DRAG   = 0.018;
 const BOUNCE_DAMP = 0.72;
 
 const UPGRADES = [
-  { id: 'launch',  icon: '🚀', name: 'Launch Power', desc: 'More initial velocity',      maxLevel: 5, costs: [80,160,280,450,700] },
-  { id: 'fuel',    icon: '⛽', name: 'Fuel Tank',    desc: 'Extra mid-air boosts',       maxLevel: 4, costs: [100,220,400,650] },
-  { id: 'gravity', icon: '🧲', name: 'Gravity Suit', desc: 'Survive asteroid grazes',    maxLevel: 3, costs: [150,350,600] },
-  { id: 'bounce',  icon: '👟', name: 'Bounce Boots', desc: 'Upgrade your natural bounce',maxLevel: 4, costs: [120,250,420,650] },
-  { id: 'wings',   icon: '🌌', name: 'Solar Wings',  desc: 'Slower passive descent',     maxLevel: 4, costs: [90,200,360,560] },
-  { id: 'magnet',  icon: '💰', name: 'Star Magnet',  desc: 'Earn more stardust',         maxLevel: 5, costs: [60,130,240,400,600] },
+  { id: 'launch',  icon: '🚀', name: 'Launch Power', desc: 'More initial velocity',       maxLevel: 5, costs: [80,160,280,450,700] },
+  { id: 'fuel',    icon: '⛽', name: 'Fuel Tank',    desc: 'Extra mid-air boosts',        maxLevel: 4, costs: [100,220,400,650] },
+  { id: 'gravity', icon: '🧲', name: 'Gravity Suit', desc: 'Survive asteroid grazes',     maxLevel: 3, costs: [150,350,600] },
+  { id: 'bounce',  icon: '👟', name: 'Bounce Boots', desc: 'Upgrade your natural bounce', maxLevel: 4, costs: [120,250,420,650] },
+  { id: 'wings',   icon: '🌌', name: 'Solar Wings',  desc: 'Slower passive descent',      maxLevel: 4, costs: [90,200,360,560] },
+  { id: 'magnet',  icon: '💰', name: 'Star Magnet',  desc: 'Earn more stardust',          maxLevel: 5, costs: [60,130,240,400,600] },
 ];
 
 let upgradeLevels = { launch: 0, fuel: 0, gravity: 0, bounce: 0, wings: 0, magnet: 0 };
@@ -103,9 +103,6 @@ function initRun() {
     a:     Math.random() * 0.6 + 0.2,
     speed: Math.random() * 0.3 + 0.1,
   }));
-
-  document.getElementById('stardust-display').textContent =
-    Math.round(totalStardust).toLocaleString();
 }
 
 function update() {
@@ -453,12 +450,8 @@ async function endRun() {
   gstate = GSTATE.DONE;
   cancelAnimationFrame(animId);
 
-  const magnet  = getUpgradeVal('magnet');
-  runStardust   = Math.round(distance * 0.08 * magnet);
-  totalStardust += runStardust;
-
   try {
-    await fetch('/api/games/lunar-descent/submit', {
+    const res  = await fetch('/api/games/lunar-descent/submit', {
       method:      'POST',
       headers:     { 'Content-Type': 'application/json' },
       credentials: 'include',
@@ -471,7 +464,26 @@ async function endRun() {
         flight_duration_ms: Math.round(distance * 80),
       }),
     });
-  } catch(e) { console.warn('Score submit failed', e); }
+    const data = await res.json();
+    runStardust = data.stardustAwarded || 0;
+  } catch(e) {
+    console.warn('Score submit failed', e);
+    runStardust = 0;
+  }
+
+  // Pull real balance back from DB
+  try {
+    const res      = await fetch('/api/auth/me', { credentials: 'include' });
+    const { user } = await res.json();
+    totalStardust  = parseFloat(user.stardust);
+    document.getElementById('stardust-display').textContent =
+      totalStardust.toLocaleString();
+  } catch(e) {
+    console.warn('Could not fetch balance', e);
+  }
+
+  // Sync topbar
+  if (window.TopBar) await TopBar.syncBalances();
 
   renderUpgradeScreen();
 }
@@ -503,14 +515,18 @@ function renderUpgradeScreen() {
   }).join('');
 
   grid.querySelectorAll('.upgrade-btn:not(.maxed):not(.cant-afford)').forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', async () => {
       const id   = btn.dataset.upg;
       const cost = parseInt(btn.dataset.cost);
       if (totalStardust >= cost) {
+        // Deduct locally for instant UI feedback
         totalStardust -= cost;
         upgradeLevels[id]++;
         document.getElementById('stardust-display').textContent =
-          Math.round(totalStardust).toLocaleString();
+          totalStardust.toLocaleString();
+
+        // TODO: wire to a real /api/upgrades/purchase endpoint
+        // For now upgrades are session-only and reset on page leave
         renderUpgradeScreen();
       }
     });
@@ -522,6 +538,17 @@ function renderUpgradeScreen() {
 async function startRun() {
   document.getElementById('overlay-start').style.display   = 'none';
   document.getElementById('overlay-upgrade').style.display = 'none';
+
+  // Load real stardust balance from DB
+  try {
+    const res      = await fetch('/api/auth/me', { credentials: 'include' });
+    const { user } = await res.json();
+    totalStardust  = parseFloat(user.stardust);
+    document.getElementById('stardust-display').textContent =
+      totalStardust.toLocaleString();
+  } catch(e) {
+    console.warn('Could not load balance');
+  }
 
   try {
     const res  = await fetch('/api/games/lunar-descent/start', {
@@ -552,6 +579,11 @@ function loop() {
   draw();
   animId = requestAnimationFrame(loop);
 }
+
+document.addEventListener('DOMContentLoaded', async () => {
+  document.getElementById('topbar').classList.add('dark');
+  await TopBar.init();
+});
 
 document.getElementById('btn-start').addEventListener('click', startRun);
 document.getElementById('btn-launch-again').addEventListener('click', startRun);

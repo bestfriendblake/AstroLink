@@ -1,50 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AstroLink — Lunar Fling</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/lunarfling.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AstroLink — Lunar Fling</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/lunarfling.css" />
+    <link rel="stylesheet" href="../components/topbar.css" />
 </head>
+
 <body>
 
-  <div class="topbar">
-    <a href="landing.html" class="back-btn">← The Moon</a>
-    <span class="topbar-logo">Lunar Fling</span>
-    <div class="score-pill">⭐ <span id="stardust-display">0</span></div>
-  </div>
+    <div id="topbar"></div>
 
-  <div class="game-wrap">
-    <canvas id="gameCanvas"></canvas>
+    <div class="game-wrap">
+        <canvas id="gameCanvas"></canvas>
 
-    <div class="overlay" id="overlay-start">
-      <div class="overlay-card">
-        <div class="overlay-icon">🧑‍🚀</div>
-        <h2>Lunar Fling</h2>
-        <p>Tap to set power.<br/>Tap again mid-air to boost.<br/>Go as far as you can!</p>
-        <button class="play-btn" id="btn-start">Launch!</button>
-      </div>
+        <div class="overlay" id="overlay-start">
+            <div class="overlay-card">
+                <div class="overlay-icon">🧑‍🚀</div>
+                <h2>Lunar Fling</h2>
+                <p>Tap to set power.<br />Tap again mid-air to boost.<br />Go as far as you can!</p>
+                <button class="play-btn" id="btn-start">Launch!</button>
+            </div>
+        </div>
+
+        <div class="overlay" id="overlay-upgrade" style="display:none;">
+            <div class="overlay-card upgrade-card">
+                <div class="overlay-icon">🏆</div>
+                <h2>Run Complete!</h2>
+                <p id="run-distance-text">Distance: 0m</p>
+                <p id="run-stardust-text" class="stardust-earned"></p>
+                <div class="upgrade-grid" id="upgrade-grid"></div>
+                <button class="play-btn" id="btn-launch-again">Launch Again</button>
+                <a href="landing.html" class="back-link">Back to Moon</a>
+            </div>
+        </div>
     </div>
 
-    <div class="overlay" id="overlay-upgrade" style="display:none;">
-      <div class="overlay-card upgrade-card">
-        <div class="overlay-icon">🏆</div>
-        <h2>Run Complete!</h2>
-        <p id="run-distance-text">Distance: 0m</p>
-        <p id="run-stardust-text" class="stardust-earned"></p>
-        <div class="upgrade-grid" id="upgrade-grid"></div>
-        <button class="play-btn" id="btn-launch-again">Launch Again</button>
-        <a href="landing.html" class="back-link">Back to Moon</a>
-      </div>
+    <div class="hint-bar" id="hint-bar">
+        <span id="hint-text">Tap to set launch power</span>
     </div>
-  </div>
 
-  <div class="hint-bar" id="hint-bar">
-    <span id="hint-text">Tap to set launch power</span>
-  </div>
-
-  <script src="js/lunarfling.js"></script>
+    <script src="js/lunarfling.js"></script>
+    <script src="../components/topbar.js"></script>
 </body>
+
 </html>

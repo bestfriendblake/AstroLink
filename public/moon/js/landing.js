@@ -1,21 +1,15 @@
 const RARITY_ICONS = {
-  common:    '🪨',
-  uncommon:  '🌿',
-  rare:      '💎',
-  epic:      '🔮',
-  legendary: '⭐',
+    common: '🪨',
+    uncommon: '🌿',
+    rare: '💎',
+    epic: '🔮',
+    legendary: '⭐',
 };
 
 async function loadMoonLanding() {
-  try {
-    const res = await fetch('/api/auth/me', { credentials: 'include' });
-    if (!res.ok) { window.location.href = '/index.html'; return; }
-    const { user } = await res.json();
-    document.getElementById('stardust-balance').textContent =
-      parseFloat(user.stardust).toLocaleString();
-  } catch {
-    window.location.href = '/index.html';
-  }
+  document.getElementById('topbar').classList.add('dark');
+  const user = await TopBar.init();
+  if (!user) return;
 
   try {
     const res = await fetch('/api/planets/moon', { credentials: 'include' });
@@ -34,20 +28,20 @@ async function loadMoonLanding() {
 }
 
 function renderStats(profile) {
-  if (!profile) return;
-  document.getElementById('stat-level').textContent    = profile.lunar_level || 1;
-  document.getElementById('stat-landings').textContent = profile.total_landings || 0;
-  document.getElementById('stat-best').textContent     =
-    (profile.best_landing_score || 0).toLocaleString();
+    if (!profile) return;
+    document.getElementById('stat-level').textContent = profile.lunar_level || 1;
+    document.getElementById('stat-landings').textContent = profile.total_landings || 0;
+    document.getElementById('stat-best').textContent =
+        (profile.best_landing_score || 0).toLocaleString();
 }
 
 function renderSpawnPool(species) {
-  const pool = document.getElementById('spawn-pool');
-  if (!species || species.length === 0) {
-    pool.innerHTML = '<div class="loading-msg">No creatures found.</div>';
-    return;
-  }
-  pool.innerHTML = species.map(s => `
+    const pool = document.getElementById('spawn-pool');
+    if (!species || species.length === 0) {
+        pool.innerHTML = '<div class="loading-msg">No creatures found.</div>';
+        return;
+    }
+    pool.innerHTML = species.map(s => `
     <div class="pet-card">
       <div class="pet-icon rarity-${s.rarity}">${RARITY_ICONS[s.rarity] || '🐾'}</div>
       <div class="pet-info">
@@ -59,14 +53,14 @@ function renderSpawnPool(species) {
 }
 
 function renderSpawnError() {
-  document.getElementById('spawn-pool').innerHTML =
-    '<div class="loading-msg">Could not load spawn pool.</div>';
+    document.getElementById('spawn-pool').innerHTML =
+        '<div class="loading-msg">Could not load spawn pool.</div>';
 }
 
 document.addEventListener('DOMContentLoaded', loadMoonLanding);
 
 document.querySelectorAll('[data-href]').forEach(el => {
-  el.addEventListener('click', () => {
-    window.location.href = el.dataset.href;
-  });
+    el.addEventListener('click', () => {
+        window.location.href = el.dataset.href;
+    });
 });

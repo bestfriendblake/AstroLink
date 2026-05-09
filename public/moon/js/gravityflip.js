@@ -1,5 +1,7 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx    = canvas.getContext('2d');
+document.getElementById('topbar').classList.add('dark');
+await TopBar.init();
 
 const STATE = { START: 0, PLAYING: 1, WIN: 2, LOSE: 3 };
 let state    = STATE.START;

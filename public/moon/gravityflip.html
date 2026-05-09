@@ -1,59 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AstroLink — Gravity Flip</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/gravityflip.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AstroLink — Gravity Flip</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/gravityflip.css" />
+    <link rel="stylesheet" href="../components/topbar.css" />
 </head>
+
 <body>
 
-  <div class="topbar">
-    <a href="landing.html" class="back-btn">← The Moon</a>
-    <span class="topbar-logo">Gravity Flip</span>
-    <div class="score-pill">⭐ <span id="score-display">0</span></div>
-  </div>
+    <div id="topbar"></div>
 
-  <div class="game-wrap">
-    <canvas id="gameCanvas"></canvas>
+    <div class="game-wrap">
+        <canvas id="gameCanvas"></canvas>
 
-    <div class="overlay" id="overlay-start">
-      <div class="overlay-card">
-        <div class="overlay-icon">🚀</div>
-        <h2>Gravity Flip</h2>
-        <p>Hold to float up.<br/>Release to fall.<br/>Reach the pet. Dodge the rocks.</p>
-        <button class="play-btn" id="btn-start">Launch</button>
-      </div>
+        <div class="overlay" id="overlay-start">
+            <div class="overlay-card">
+                <div class="overlay-icon">🚀</div>
+                <h2>Gravity Flip</h2>
+                <p>Hold to float up.<br />Release to fall.<br />Reach the pet. Dodge the rocks.</p>
+                <button class="play-btn" id="btn-start">Launch</button>
+            </div>
+        </div>
+
+        <div class="overlay" id="overlay-win" style="display:none;">
+            <div class="overlay-card">
+                <div class="overlay-icon">✨</div>
+                <h2>You rescued it!</h2>
+                <p id="win-score-text">Score: 0</p>
+                <p id="win-stardust-text" class="stardust-earned"></p>
+                <button class="play-btn" id="btn-play-again">Play Again</button>
+                <a href="landing.html" class="back-link">Back to Moon</a>
+            </div>
+        </div>
+
+        <div class="overlay" id="overlay-lose" style="display:none;">
+            <div class="overlay-card">
+                <div class="overlay-icon">💥</div>
+                <h2>Crashed!</h2>
+                <p id="lose-score-text">Score: 0</p>
+                <button class="play-btn" id="btn-retry">Try Again</button>
+                <a href="landing.html" class="back-link">Back to Moon</a>
+            </div>
+        </div>
     </div>
 
-    <div class="overlay" id="overlay-win" style="display:none;">
-      <div class="overlay-card">
-        <div class="overlay-icon">✨</div>
-        <h2>You rescued it!</h2>
-        <p id="win-score-text">Score: 0</p>
-        <p id="win-stardust-text" class="stardust-earned"></p>
-        <button class="play-btn" id="btn-play-again">Play Again</button>
-        <a href="landing.html" class="back-link">Back to Moon</a>
-      </div>
+    <div class="hint-bar">
+        <span>Hold anywhere to float up · Release to fall</span>
     </div>
 
-    <div class="overlay" id="overlay-lose" style="display:none;">
-      <div class="overlay-card">
-        <div class="overlay-icon">💥</div>
-        <h2>Crashed!</h2>
-        <p id="lose-score-text">Score: 0</p>
-        <button class="play-btn" id="btn-retry">Try Again</button>
-        <a href="landing.html" class="back-link">Back to Moon</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="hint-bar">
-    <span>Hold anywhere to float up · Release to fall</span>
-  </div>
-
-  <script src="js/gravityflip.js"></script>
+    <script src="js/gravityflip.js"></script>
+    <script src="../components/topbar.js"></script>
 </body>
+
 </html>

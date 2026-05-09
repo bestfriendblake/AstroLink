@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AstroLink — Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka+One&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/og/dashboard.css" />
+</head>
+<body>
+
+  <div class="topbar">
+    <span class="topbar-logo">AstroLink</span>
+    <div class="topbar-right">
+      <div class="currency-pill moonstone-pill">
+        <div class="moon-icon">🌙</div>
+        <span id="moonstone-balance">0</span>
+      </div>
+      <div class="currency-pill">
+        <div class="star-icon"></div>
+        <span id="stardust-balance">0</span>
+      </div>
+      <button class="avatar-btn" id="avatar-btn"></button>
+    </div>
+  </div>
+
+  <div class="profile-banner">
+    <div class="profile-avatar" id="profile-avatar"></div>
+    <div class="profile-info">
+      <p class="profile-name" id="profile-name">...</p>
+      <p class="profile-level" id="profile-level">Global Level 1 · Moon Explorer</p>
+      <div class="xp-bar-bg">
+        <div class="xp-bar-fill" id="xp-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dailies -->
+  <div class="section-label">Daily Rewards</div>
+  <div class="dailies-row">
+
+    <div class="daily-card streak-card" id="streak-card">
+      <div class="daily-card-icon">🔥</div>
+      <div class="daily-card-info">
+        <div class="daily-card-title">Login Streak</div>
+        <div class="daily-card-sub" id="streak-sub">Loading...</div>
+      </div>
+      <button class="daily-action-btn" id="streak-btn" disabled>Claim</button>
+    </div>
+
+    <div class="daily-card spin-card" id="spin-card">
+      <div class="daily-card-icon">🎰</div>
+      <div class="daily-card-info">
+        <div class="daily-card-title">Daily Spin</div>
+        <div class="daily-card-sub" id="spin-sub">Loading...</div>
+      </div>
+      <button class="daily-action-btn" id="spin-btn" disabled>Spin</button>
+    </div>
+
+  </div>
+
+  <!-- Slot Machine Modal -->
+  <div class="modal-overlay" id="slot-modal" style="display:none;">
+    <div class="modal-card">
+      <div class="modal-title">🎰 Daily Spin</div>
+      <div class="slot-machine">
+        <div class="reel" id="reel-0">⭐</div>
+        <div class="reel" id="reel-1">⭐</div>
+        <div class="reel" id="reel-2">⭐</div>
+      </div>
+      <div class="slot-result" id="slot-result"></div>
+      <button class="play-btn" id="slot-spin-btn">Pull! 🎰</button>
+      <button class="close-btn" id="slot-close-btn">Close</button>
+    </div>
+  </div>
+
+  <!-- Quests -->
+  <div class="section-label">Daily Quests</div>
+  <div class="quests-list" id="quests-list">
+    <div class="loading-msg">Loading quests...</div>
+  </div>
+
+  <!-- Pets -->
+  <div class="section-label">My Pets</div>
+  <div class="pet-preview" id="pet-preview">
+    <div class="pet-chip loading-chip">Loading...</div>
+  </div>
+
+  <!-- Explore -->
+  <div class="section-label">Explore</div>
+  <div class="grid-2">
+    <div class="nav-card" data-href="/moon/landing.html">
+      <div class="card-icon icon-blue">🪐</div>
+      <div>
+        <div class="card-title">Star Map</div>
+        <div class="card-sub">Travel to planets</div>
+      </div>
+    </div>
+    <div class="nav-card" data-href="/moon/landing.html">
+      <div class="card-icon icon-pink">🌙</div>
+      <div>
+        <div class="card-title">The Moon</div>
+        <div class="card-sub">Current location</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shop & Trade -->
+  <div class="section-label">Shop &amp; Trade</div>
+  <div class="grid-2">
+    <div class="nav-card" data-href="/petshop.html">
+      <div class="card-icon icon-pink">🐾</div>
+      <div>
+        <div class="card-title">Pet Shop</div>
+        <div class="card-sub">Buy rare pets</div>
+      </div>
+    </div>
+    <div class="nav-card" data-href="/shop.html">
+      <div class="card-icon icon-amber">🛍️</div>
+      <div>
+        <div class="card-title">Item Shop</div>
+        <div class="card-sub">Spend moonstone</div>
+      </div>
+    </div>
+    <div class="nav-card" data-href="/auction.html">
+      <div class="card-icon icon-mint">🏷️</div>
+      <div>
+        <div class="card-title">Auction House</div>
+        <div class="card-sub">Buy &amp; sell pets</div>
+      </div>
+    </div>
+    <div class="nav-card" data-href="/moonstone.html">
+      <div class="card-icon icon-purple">🌙</div>
+      <div>
+        <div class="card-title">Get Moonstone</div>
+        <div class="card-sub">Convert or purchase</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Community -->
+  <div class="section-label">Community</div>
+  <div class="grid-2">
+    <div class="nav-card" data-href="/starbook.html">
+      <div class="card-icon icon-coral">🌟</div>
+      <div>
+        <div class="card-title">Starbook</div>
+        <div class="card-sub">Player profiles</div>
+      </div>
+    </div>
+    <div class="nav-card" data-href="/settings.html">
+      <div class="card-icon icon-purple">⚙️</div>
+      <div>
+        <div class="card-title">Settings</div>
+        <div class="card-sub">Profile &amp; account</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

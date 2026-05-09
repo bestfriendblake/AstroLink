@@ -9,6 +9,8 @@ const authRoutes   = require('./routes/auth');
 const planetRoutes = require('./routes/planets');
 const petRoutes    = require('./routes/pets');
 const gameRoutes   = require('./routes/games');
+const dailyRoutes    = require('./routes/dailies');
+const currencyRoutes = require('./routes/currency');
 
 const app  = express();
 const PORT = process.env.PORT || 3000;
@@ -52,5 +54,8 @@ app.use((err, _req, res, _next) => {
 app.listen(PORT, () => {
   console.log(`[AstroLink] Server running on port ${PORT}`);
 });
+
+app.use('/api/dailies',  dailyRoutes);
+app.use('/api/currency', currencyRoutes);
 
 module.exports = app;

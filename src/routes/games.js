@@ -187,4 +187,89 @@ function calculateScore(data) {
   return Math.max(0, score);
 }
 
+// ── POST /api/games/lunar-fling/submit ───────────────────────
+router.post('/lunar-fling/submit', requireAuth, async (req, res) => {
+  const schema = z.object({
+    session_token: z.string().length(64),
+    distance:      z.number().int().min(0).max(999999),
+  });
+
+  const result = schema.safeParse(req.body);
+  if (!result.success) {
+    return res.status(400).json({ errors: result.error.flatten().fieldErrors });
+  }
+
+  const { session_token, distance } = result.data;
+  const connection = await db.getConnection();
+
+  try {
+    await connection.beginTransaction();
+
+    // Validate session token
+    const [sessions] = await connection.execute(
+      `SELECT id FROM game_sessions
+       WHERE session_token = :token
+         AND user_id = :userId
+         AND used = FALSE
+         AND expires_at > NOW()
+       LIMIT 1`,
+      { token: session_token, userId: req.user.id }
+    );
+
+    if (sessions.length === 0) {
+      await connection.rollback();
+      return res.status(400).json({ error: 'Invalid or expired game session' });
+    }
+
+    await connection.execute(
+      'UPDATE game_sessions SET used = TRUE WHERE id = :id',
+      { id: sessions[0].id }
+    );
+
+    // Sanity check — flag suspiciously huge distances
+    const flagged = distance > 50000;
+
+    // Award stardust based on distance
+    const stardustAwarded = Math.round(distance * 0.1);
+
+    const [userRows] = await connection.execute(
+      'SELECT stardust FROM users WHERE id = :id FOR UPDATE',
+      { id: req.user.id }
+    );
+    const newBalance = parseFloat(userRows[0].stardust) + stardustAwarded;
+
+    await connection.execute(
+      'UPDATE users SET stardust = :balance WHERE id = :id',
+      { balance: newBalance.toFixed(2), id: req.user.id }
+    );
+
+    await connection.execute(
+      `UPDATE lunar_profiles
+       SET total_landings = total_landings + 1,
+           successful_landings = successful_landings + 1,
+           total_stardust_earned = total_stardust_earned + :stardust,
+           last_visited_at = NOW()
+       WHERE user_id = :userId`,
+      { stardust: stardustAwarded, userId: req.user.id }
+    );
+
+    await connection.execute(
+      `INSERT INTO transaction_log (user_id, amount, balance_after, reason)
+       VALUES (:userId, :amount, :balance, 'game_reward')`,
+      { userId: req.user.id, amount: stardustAwarded, balance: newBalance.toFixed(2) }
+    );
+
+    await connection.commit();
+
+    res.json({ stardustAwarded, newBalance, flagged });
+
+  } catch (err) {
+    await connection.rollback();
+    console.error('[Game] Fling submit error:', err);
+    res.status(500).json({ error: 'Failed to submit run' });
+  } finally {
+    connection.release();
+  }
+});
+
 module.exports = router;

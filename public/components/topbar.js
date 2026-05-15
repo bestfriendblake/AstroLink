@@ -1,9 +1,9 @@
 const TopBar = {
-  async init() {
-    const el = document.getElementById('topbar');
-    if (!el) return;
+    async init() {
+        const el = document.getElementById('topbar');
+        if (!el) return;
 
-    el.innerHTML = `
+        el.innerHTML = `
       <div class="topbar-inner">
         <a href="/dashboard.html" class="topbar-logo">AstroLink</a>
         <div class="topbar-right">
@@ -20,41 +20,41 @@ const TopBar = {
       </div>
     `;
 
-    document.getElementById('tb-avatar').addEventListener('click', () => {
-      window.location.href = '/settings.html';
-    });
+        document.getElementById('tb-avatar').addEventListener('click', () => {
+            window.location.href = '/settings.html';
+        });
 
-    await TopBar.refresh();
-  },
+        return await TopBar.refresh();
+    },
 
-  async refresh() {
-    try {
-      const res = await fetch('/api/auth/me', { credentials: 'include' });
-      if (!res.ok) {
-        window.location.href = '/index.html';
-        return;
-      }
-      const { user } = await res.json();
-      TopBar.render(user);
-      return user;
-    } catch {
-      window.location.href = '/index.html';
-    }
-  },
+    async refresh() {
+        try {
+            const res = await fetch('/api/auth/me', { credentials: 'include' });
+            if (!res.ok) {
+                window.location.href = '/index.html';
+                return;
+            }
+            const { user } = await res.json();
+            TopBar.render(user);
+            return user;
+        } catch {
+            window.location.href = '/index.html';
+        }
+    },
 
-  render(user) {
-    const sd = document.getElementById('tb-stardust');
-    const ms = document.getElementById('tb-moonstone');
-    const av = document.getElementById('tb-avatar');
-    if (sd) sd.textContent = parseFloat(user.stardust).toLocaleString();
-    if (ms) ms.textContent = (user.moonstone || 0).toLocaleString();
-    if (av) av.textContent = user.username.slice(0, 1).toUpperCase();
-  },
+    render(user) {
+        const sd = document.getElementById('tb-stardust');
+        const ms = document.getElementById('tb-moonstone');
+        const av = document.getElementById('tb-avatar');
+        if (sd) sd.textContent = parseFloat(user.stardust).toLocaleString();
+        if (ms) ms.textContent = (user.moonstone || 0).toLocaleString();
+        if (av) av.textContent = user.username.slice(0, 1).toUpperCase();
+    },
 
-  // Call this from any page after a transaction to re-sync balances
-  async syncBalances() {
-    return await TopBar.refresh();
-  },
+    // Call this from any page after a transaction to re-sync balances
+    async syncBalances() {
+        return await TopBar.refresh();
+    },
 };
 
 window.TopBar = TopBar;

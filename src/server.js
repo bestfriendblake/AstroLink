@@ -5,10 +5,10 @@ const cors         = require('cors');
 const cookieParser = require('cookie-parser');
 const rateLimit    = require('express-rate-limit');
 
-const authRoutes   = require('./routes/auth');
-const planetRoutes = require('./routes/planets');
-const petRoutes    = require('./routes/pets');
-const gameRoutes   = require('./routes/games');
+const authRoutes     = require('./routes/auth');
+const planetRoutes   = require('./routes/planets');
+const petRoutes      = require('./routes/pets');
+const gameRoutes     = require('./routes/games');
 const dailyRoutes    = require('./routes/dailies');
 const currencyRoutes = require('./routes/currency');
 
@@ -31,10 +31,13 @@ app.use(rateLimit({
 }));
 
 app.use(express.static('public'));
-app.use('/api/auth',    authRoutes);
-app.use('/api/planets', planetRoutes);
-app.use('/api/pets',    petRoutes);
-app.use('/api/games',   gameRoutes);
+
+app.use('/api/auth',     authRoutes);
+app.use('/api/planets',  planetRoutes);
+app.use('/api/pets',     petRoutes);
+app.use('/api/games',    gameRoutes);
+app.use('/api/dailies',  dailyRoutes);
+app.use('/api/currency', currencyRoutes);
 
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', version: '0.1.0', env: process.env.NODE_ENV });
@@ -54,8 +57,5 @@ app.use((err, _req, res, _next) => {
 app.listen(PORT, () => {
   console.log(`[AstroLink] Server running on port ${PORT}`);
 });
-
-app.use('/api/dailies',  dailyRoutes);
-app.use('/api/currency', currencyRoutes);
 
 module.exports = app;

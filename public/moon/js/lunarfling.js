@@ -511,20 +511,36 @@ function renderUpgradeScreen() {
     }).join('');
 
     grid.querySelectorAll('.upgrade-btn:not(.maxed):not(.cant-afford)').forEach(btn => {
-        btn.addEventListener('click', async () => {
+        btn.addEventListener('click', () => {
             const id = btn.dataset.upg;
             const cost = parseInt(btn.dataset.cost);
-            if (totalStardust >= cost) {
-                // Deduct locally for instant UI feedback
-                totalStardust -= cost;
-                upgradeLevels[id]++;
-                document.getElementById('stardust-display').textContent =
-                    totalStardust.toLocaleString();
 
-                // TODO: wire to a real /api/upgrades/purchase endpoint
-                // For now upgrades are session-only and reset on page leave
-                renderUpgradeScreen();
-            }
+            // Guard: re-check level cap and afford BEFORE doing anything
+            const currentLvl = upgradeLevels[id];
+            const upg = UPGRADES.find(u => u.id === id);
+            if (!upg || currentLvl >= upg.maxLevel) return;
+            if (totalStardust < cost) return;
+
+            // Disable this button immediately to prevent double-click
+            btn.disabled = true;
+            btn.style.opacity = '0.5';
+            btn.style.cursor = 'default';
+
+            // Apply purchase
+            totalStardust -= cost;
+            upgradeLevels[id]++;
+
+            // Visual feedback on the button before re-render
+            btn.querySelector('.upg-cost').textContent = '✓ Bought!';
+            btn.querySelector('.upg-level').textContent =
+                `Lv ${upgradeLevels[id]} / ${upg.maxLevel}`;
+
+            // Update stardust display immediately
+            document.getElementById('stardust-display').textContent =
+                Math.round(totalStardust).toLocaleString();
+
+            // Re-render after short delay so player sees the feedback
+            setTimeout(() => renderUpgradeScreen(), 400);
         });
     });
 
